@@ -7,7 +7,6 @@ import lombok.Data;
 @Table(name = "questions")
 @Data
 public class Question {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
