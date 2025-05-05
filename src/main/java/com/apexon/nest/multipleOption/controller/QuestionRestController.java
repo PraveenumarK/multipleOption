@@ -1,6 +1,6 @@
 package com.apexon.nest.multipleOption.controller;
 
-import com.apexon.nest.multipleOption.dto.QuestionRequest;
+import com.apexon.nest.multipleOption.dto.CreateQuestionRequest;
 import com.apexon.nest.multipleOption.model.Question;
 import com.apexon.nest.multipleOption.service.QuestionService;
 import jakarta.validation.Valid;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/questions")
-public class QuestionController {
+public class QuestionRestController {
 
     @Autowired
     private QuestionService questionService;
@@ -28,7 +28,7 @@ public class QuestionController {
     }
 
     @PostMapping
-    public ResponseEntity<Question> addQuestion(@Valid @RequestBody QuestionRequest request) {
+    public ResponseEntity<Question> addQuestion(@Valid @RequestBody CreateQuestionRequest request) {
         return ResponseEntity.ok(questionService.addQuestion(request));
     }
 

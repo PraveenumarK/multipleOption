@@ -1,6 +1,6 @@
 package com.apexon.nest.multipleOption.service;
 
-import com.apexon.nest.multipleOption.dto.QuestionRequest;
+import com.apexon.nest.multipleOption.dto.CreateQuestionRequest;
 import com.apexon.nest.multipleOption.model.Question;
 import com.apexon.nest.multipleOption.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,12 @@ public class QuestionService {
         return questionRepository.findByTopic(topic);
     }
 
-    public Question addQuestion(QuestionRequest request) {
+    public Question addQuestion(CreateQuestionRequest request) {
         Question question = new Question();
         question.setTopic(request.getTopic());
         question.setDescription(request.getDescription());
+
+
         question.setOptionA(request.getOptionA());
         question.setOptionB(request.getOptionB());
         question.setOptionC(request.getOptionC());

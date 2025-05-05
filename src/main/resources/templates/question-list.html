@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>All Questions</title>
+</head>
+<body>
+<h1>All Questions</h1>
+
+<a href="/questions/add">Add New Question</a>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Topic</th>
+    <th>Description</th>
+    <th>Option A</th>
+    <th>Option B</th>
+    <th>Option C</th>
+    <th>Option D</th>
+    <th>Correct Option</th>
+    <th>Explanation</th>
+    <th>Is Correct</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="question : ${questions}">
+    <td th:text="${question.topic}"></td>
+    <td th:text="${question.description}"></td>
+    <td th:text="${question.optionA}"></td>
+    <td th:text="${question.optionB}"></td>
+    <td th:text="${question.optionC}"></td>
+    <td th:text="${question.optionD}"></td>
+    <td th:text="${question.correctOption}"></td>
+    <td th:text="${question.explanation}"></td>
+    <td th:text="${question.correct} ? 'Yes' : 'No'"></td>
+    <td>
+      <a th:href="@{'/questions/delete/' + ${question.id}}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
