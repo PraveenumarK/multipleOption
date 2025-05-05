@@ -1,5 +1,4 @@
 package com.apexon.nest.multipleOption.model;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
