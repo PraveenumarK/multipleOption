@@ -26,6 +26,8 @@ public class QuestionRequest {
     @NotBlank
     private String correctOption; // A, B, C, or D
 
+    public boolean isCorrect;
+
     @NotBlank
     private String explanation;
 }

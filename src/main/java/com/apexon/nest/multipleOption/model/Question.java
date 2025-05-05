@@ -1,10 +1,12 @@
 package com.apexon.nest.multipleOption.model;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 
 @Entity
 @Table(name = "questions")
 @Data
+@Getter
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,6 +33,7 @@ public class Question {
     @Column(nullable = false, length = 1)
     private String correctOption; // Should be A, B, C, or D
 
+    @Column(nullable = false)
     private boolean isCorrect;
 
     @Column(columnDefinition = "TEXT", nullable = false)

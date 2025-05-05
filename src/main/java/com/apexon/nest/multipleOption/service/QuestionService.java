@@ -36,7 +36,7 @@ public class QuestionService {
         question.setOptionD(request.getOptionD());
         question.setCorrectOption(request.getCorrectOption());
         question.setExplanation(request.getExplanation());
-        question.setCorrect(false); // default
+        question.setCorrect(request.isCorrect()); // default
         return questionRepository.save(question);
     }
 
