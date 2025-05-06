@@ -1,62 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
-<head>
-    <title>Add Quiz Question</title>
-    <meta charset="UTF-8">
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Add Question</title></head>
 <body>
-<h2>Add New Quiz Question</h2>
-<form th:action="@{/questions/add}" method="post" th:object="${question}">
+<h2>Add New Question</h2>
+<form th:action="@{/questions/add}" th:object="${questionRequest}" method="post">
+
     <label>Topic:</label>
     <label>
-        <input type="text" th:field="*{topic}" required />
-    </label><br/><br/>
-
-    <label>Description:</label><br/>
-    <label>
-        <textarea th:field="*{description}" rows="4" cols="50" required></textarea>
-    </label><br/><br/>
-
-    <label>Option A:</label>
-    <label>
-        <input type="text" th:field="*{optionA}" required />
-    </label><br/>
-    <label>Option B:</label>
-    <label>
-        <input type="text" th:field="*{optionB}" required />
-    </label><br/>
-    <label>Option C:</label>
-    <label>
-        <input type="text" th:field="*{optionC}" required />
-    </label><br/>
-    <label>Option D:</label>
-    <label>
-        <input type="text" th:field="*{optionD}" required />
-    </label><br/><br/>
-
-    <label>Correct Option (A/B/C/D):</label>
-    <label>
-        <select th:field="*{correctOption}" required>
-            <option value="">-- Select --</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-        </select><br/><br/>
-    </label><br/><br/>
-
-    <label>Is Correct?</label>
-    <label>
-        <select th:field="*{correct}">
-            <option value="true">Yes</option>
-            <option value="false">No</option>
+        <select th:field="*{topic}">
+            <option th:each="t : ${topics}" th:value="${t.id}" th:text="${t.topic}"></option>
         </select>
-    </label><br/><br/>
+    </label><br/>
 
-    <label>Explanation:</label><br/>
+    <label>Description:</label>
     <label>
-        <textarea th:field="*{explanation}" rows="4" cols="50"></textarea>
-    </label><br/><br/>
+        <textarea th:field="*{description}"></textarea>
+    </label><br/>
+
+    <label>Explanation:</label>
+    <label>
+        <textarea th:field="*{explanation}"></textarea>
+    </label><br/>
+
+    <!-- Example for 4 Options, you can dynamically add with JavaScript -->
+    <div th:each="i : ${#numbers.sequence(0, 3)}">
+        <h4>Option [[${i+1}]]</h4>
+        <label>
+            <input type="text" th:field="*{options[__${i}__].description}" placeholder="Option Description"/>
+        </label><br/>
+        <label>
+            <input type="text" th:field="*{options[__${i}__].explanation}" placeholder="Option Explanation"/>
+        </label><br/>
+        <label>Is Correct?</label>
+        <label>
+            <input type="checkbox" th:field="*{options[__${i}__].correct}"/>
+        </label><br/><br/>
+    </div>
 
     <button type="submit">Submit</button>
 </form>

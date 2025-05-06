@@ -17,24 +17,4 @@ public class QuestionRestController {
     @Autowired
     private QuestionService questionService;
 
-    @GetMapping("/topic")
-    public ResponseEntity<List<Question>> getAllQuestions() {
-        return ResponseEntity.ok(questionService.getAllQuestions());
-    }
-
-    @GetMapping("/topic/{topic}")
-    public ResponseEntity<List<Question>> getQuestionsByTopic(@PathVariable String topic) {
-        return ResponseEntity.ok(questionService.getQuestionsByTopic(topic));
-    }
-
-    @PostMapping
-    public ResponseEntity<Question> addQuestion(@Valid @RequestBody CreateQuestionRequest request) {
-        return ResponseEntity.ok(questionService.addQuestion(request));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
-        questionService.deleteQuestion(id);
-        return ResponseEntity.noContent().build();
-    }
 }
