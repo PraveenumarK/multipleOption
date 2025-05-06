@@ -22,6 +22,7 @@ public class Question {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String explanation;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Option> options;
+
 }

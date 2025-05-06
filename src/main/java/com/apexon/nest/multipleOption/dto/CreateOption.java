@@ -9,8 +9,7 @@ public class CreateOption {
     private Long questionId;
 
     @NotBlank
-    private boolean isCorrect;
-
+    private boolean correct;
 
     private String explanation;
 

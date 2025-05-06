@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "options")
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,7 +20,4 @@ public class Option {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
-
-
-
 }

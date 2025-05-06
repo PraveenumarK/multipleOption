@@ -1,7 +1,6 @@
 package com.apexon.nest.multipleOption.service;
 
 import com.apexon.nest.multipleOption.dto.CreateQuestionRequest;
-import com.apexon.nest.multipleOption.dto.CreateTopic;
 import com.apexon.nest.multipleOption.model.Option;
 import com.apexon.nest.multipleOption.model.Question;
 import com.apexon.nest.multipleOption.model.Topic;
@@ -24,10 +23,18 @@ public class QuestionService {
     public List<Question> getAllQuestions() {
         return questionRepository.findAll();
     }
+
     public Question saveQuestion(CreateQuestionRequest request) {
         Question question = new Question();
-        Topic topic = topicRepository.findById(request.getTopic())
-                .orElseThrow(() -> new RuntimeException("Topic not found"));
+
+        // Automatically create topic if not exists
+        Topic topic = topicRepository.findByTopic(request.getTopic())
+                .orElseGet(() -> {
+                    Topic newTopic = new Topic();
+                    newTopic.setTopic(request.getTopic());
+                    return topicRepository.save(newTopic);
+                });
+
         question.setTopic(topic);
         question.setDescription(request.getDescription());
         question.setExplanation(request.getExplanation());

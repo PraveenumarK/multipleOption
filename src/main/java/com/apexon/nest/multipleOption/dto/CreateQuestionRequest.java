@@ -9,7 +9,10 @@ import java.util.List;
 @Data
 public class CreateQuestionRequest {
     @NotBlank
-    private Long topic;
+    private Long topicId;
+
+    @NotBlank
+    private String topic;
 
     @NotBlank
     private String description;
@@ -18,6 +21,6 @@ public class CreateQuestionRequest {
     private String explanation;
 
     @NotBlank
-    private List<Option> options;
+    private List<CreateOption> options;
 
 }
