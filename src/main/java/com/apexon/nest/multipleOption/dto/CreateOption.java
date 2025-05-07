@@ -15,4 +15,7 @@ public class CreateOption {
 
     @NotBlank
     private String description;
+
+    public CreateOption(String s, String s1, boolean b) {
+    }
 }

@@ -1,6 +1,5 @@
 package com.apexon.nest.multipleOption.dto;
 
-import com.apexon.nest.multipleOption.model.Option;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 

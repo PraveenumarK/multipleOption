@@ -35,6 +35,14 @@ dependencies {
 	implementation 'org.hibernate.validator:hibernate-validator'
 	implementation 'mysql:mysql-connector-java:8.0.28'  // Or the latest version
 
+	// JUnit 5
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+
+	// Mockito
+	testImplementation 'org.mockito:mockito-core:5.11.0'
+	testImplementation 'org.mockito:mockito-junit-jupiter:5.11.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 }
 
