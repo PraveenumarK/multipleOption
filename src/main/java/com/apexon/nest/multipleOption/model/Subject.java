@@ -1,11 +1,7 @@
 package com.apexon.nest.multipleOption.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.List;
 
 @Entity
@@ -13,12 +9,12 @@ import java.util.List;
 public class Subject {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String subject; // ✅ This is just the name of the subject, don't annotate with @OneToMany
+    @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL)
+    private List<Topic> topics;
 
-    @OneToMany(mappedBy = "subject")
-    private List<Topic> topics; // ✅ This is the correct use of @OneToMany
+    private String subjectName;
+
 }
-

@@ -8,10 +8,10 @@ import lombok.Data;
 public class Topic {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String topic;
+    private String topicName;
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
