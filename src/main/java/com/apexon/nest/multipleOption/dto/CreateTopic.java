@@ -10,7 +10,5 @@ public class CreateTopic {
     private Long subjectId;
 
     @NotBlank
-    private String topic;
-
-
+    private String topicName;
 }

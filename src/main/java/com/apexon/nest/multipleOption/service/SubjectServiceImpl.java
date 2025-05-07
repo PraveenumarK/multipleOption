@@ -31,16 +31,16 @@ public class SubjectServiceImpl implements SubjectService {
                 topic.setSubject(vo);
             }
         }
-        List<Subject> subjects = repo.findAll();
+       /* List<Subject> subjects = repo.findAll();
         boolean isExisted = subjects.stream().filter(subject ->  {
             if (subject.getSubjectName().equals(vo.getSubjectName())) {
                 return true;
             }
-        return false;}).isParallel();
-        if (!isExisted) {
+        return false;}).isParallel();*/
+       // if (!isExisted) {
             return repo.save(vo);
-        }
-        return new Subject();
+       // }
+       // return new Subject();
     }
     @Override
     public Subject getSubjectWithTopics(Long id) {

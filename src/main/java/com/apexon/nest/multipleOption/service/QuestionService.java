@@ -27,18 +27,20 @@ public class QuestionService {
     public Question saveQuestion(CreateQuestionRequest request) {
         Question question = new Question();
 
-        // Automatically create topic if not exists
-        Topic topic = topicRepository.findByTopic(request.getTopic())
-                .orElseGet(() -> {
-                    Topic newTopic = new Topic();
-                    newTopic.setTopic(request.getTopic());
-                    return topicRepository.save(newTopic);
-                });
+        // Ensure request.getTopic() is not null
+        String topicName = request.getTopicName();
+        if (topicName == null || topicName.isEmpty()) {
+            throw new RuntimeException("Topic name cannot be null or empty");
+        }
+
+        Topic topic = topicRepository.findByTopicName(topicName)
+                .orElseThrow(() -> new RuntimeException("Topic not found: " + topicName));
 
         question.setTopic(topic);
         question.setDescription(request.getDescription());
         question.setExplanation(request.getExplanation());
 
+        // Process the options
         List<Option> optionList = request.getOptions().stream().map(opt -> {
             Option option = new Option();
             option.setCorrect(opt.isCorrect());
@@ -49,6 +51,8 @@ public class QuestionService {
         }).collect(Collectors.toList());
 
         question.setOptions(optionList);
+
         return questionRepository.save(question);
     }
 }
+

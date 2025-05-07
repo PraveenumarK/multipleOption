@@ -12,7 +12,7 @@ public class CreateQuestionRequest {
     private Long topicId;
 
     @NotBlank
-    private String topic;
+    private String topicName;
 
     @NotBlank
     private String description;
